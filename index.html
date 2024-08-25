@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Website</title>
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('minecraft.ttf') format('truetype');
+        }
+
+        body {
+            background-image: url('bedrock.png');
+            background-size: 100px 100px;
+            background-repeat: repeat;
+            background-position: top left;
+            background-color: #000000;
+            color: white;
+            font-family: 'Minecraft', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            text-shadow: 3px 3px #262626;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: -50px;
+        }
+
+        .name {
+            font-size: 60px; /* Schriftgröße leicht verringert */
+            color: orange;
+        }
+
+        .dropdown-header1 {
+            background: none;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 24px;
+            font-family: 'Minecraft', Arial, sans-serif;
+            transition: color 0.3s;
+            margin-top: 10px;
+        }
+
+        .dropdown-header1:hover {
+            color: orange;
+        }
+
+        .dropdown-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .dropdown-container a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 18px;
+            background-color: #444;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-container a:hover {
+            background-color: #666;
+        }
+
+        .corner-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: none;
+            border: none;
+            color: #d4aaff;
+            text-decoration: underline;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: 'Minecraft', Arial, sans-serif;
+            padding: 8px 12px;
+            z-index: 1000;
+        }
+
+        .corner-button:hover {
+            color: #b89ef5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="name">Obnoxious</div>
+
+        <button class="dropdown-header1" id="links-button">Links</button>
+        <div class="dropdown-container" id="links-container">
+            <a href="https://www.youtube.com" target="_blank">YouTube</a>
+            <a href="https://de.namemc.com/profile/NR1sk.1" target="_blank">NameMC</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a id="about-link" href="about.html">About me</a>
+        </div>
+
+        <button class="dropdown-header1" id="friends-button">Friends</button>
+        <div class="dropdown-container" id="friends-container">
+            <a href="https://guns.lol/doommonkey" target="_blank">DoomMonkey</a>
+            <a href="#friend2">Friend 2</a>
+        </div>
+    </div>
+
+    <!-- Der Button oben links, der zur newpage.html führt -->
+    <button class="corner-button" onclick="window.location.href='void.html'">.</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var linksButton = document.getElementById("links-button");
+            var friendsButton = document.getElementById("friends-button");
+            var linksContainer = document.getElementById("links-container");
+            var friendsContainer = document.getElementById("friends-container");
+
+            linksButton.addEventListener("click", function () {
+                // Toggle visibility of links container
+                if (linksContainer.style.display === "block") {
+                    linksContainer.style.display = "none";
+                } else {
+                    linksContainer.style.display = "block";
+                }
+            });
+
+            friendsButton.addEventListener("click", function () {
+                // Toggle visibility of friends container
+                if (friendsContainer.style.display === "block") {
+                    friendsContainer.style.display = "none";
+                } else {
+                    friendsContainer.style.display = "block";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

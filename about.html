@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Website - About Me</title>
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('minecraft.ttf') format('truetype');
+        }
+        body {
+            background-color: #111;
+            color: white;
+            font-family: 'Minecraft', Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 18px;
+            border: none;
+            font-family: 'Minecraft', Arial, sans-serif;
+        }
+        .about-header {
+            font-size: 36px;
+            color: orange;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+        .about-text ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .about-text ul li {
+            margin: 10px 0;
+            font-size: 28px;
+        }
+        .bottom-text {
+            font-size: 16px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">Back</a> <!-- Zurück zur Startseite -->
+    <div class="about-text">
+        <div class="about-header">Obnoxious</div>
+        <p>Hi! I'm a 13-year-old boy from Germany who is interested in a lot of things.</p>
+        <p>I'm interested in:</p>
+        <ul>
+            <li>Programming (C#, Java, JS)</li>
+            <li>Virtual Reality (Oculus Quest 2,3)</li>
+            <li>Gaming</li>
+            <li>Game Modding</li>
+            <li>Much more...</li>
+        </ul>
+        <p class="bottom-text">And you can probably tell I'm very interested in Minecraft, judging by this website.</p>
+    </div>
+</body>
+</html>
