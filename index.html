@@ -37,7 +37,7 @@
         }
 
         .name {
-            font-size: 60px; /* Schriftgröße leicht verringert */
+            font-size: 60px; 
             color: orange;
         }
 
@@ -117,11 +117,10 @@
         <button class="dropdown-header1" id="friends-button">Friends</button>
         <div class="dropdown-container" id="friends-container">
             <a href="https://guns.lol/doommonkey" target="_blank">DoomMonkey</a>
-            <a href="#friend2">Friend 2</a>
         </div>
     </div>
 
-    <!-- Der Button oben links, der zur newpage.html führt -->
+
     <button class="corner-button" onclick="window.location.href='void.html'">.</button>
 
     <script>
@@ -132,7 +131,7 @@
             var friendsContainer = document.getElementById("friends-container");
 
             linksButton.addEventListener("click", function () {
-                // Toggle visibility of links container
+
                 if (linksContainer.style.display === "block") {
                     linksContainer.style.display = "none";
                 } else {
@@ -141,7 +140,7 @@
             });
 
             friendsButton.addEventListener("click", function () {
-                // Toggle visibility of friends container
+
                 if (friendsContainer.style.display === "block") {
                     friendsContainer.style.display = "none";
                 } else {
