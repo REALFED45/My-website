@@ -10,10 +10,10 @@
             src: url('minecraft.ttf') format('truetype');
         }
         body {
-            background-image: url('door.png'); /* Verwendet das Hintergrundbild "door.png" */
-            background-size: 300px 300px; /* Kachelgröße */
-            background-repeat: repeat; /* Hintergrundbild wird wiederholt */
-            background-position: top left; /* Position des Hintergrunds */
+            background-image: url('door.png'); 
+            background-size: 300px 300px; 
+            background-repeat: repeat; 
+            background-position: top left; 
             color: white;
             font-family: 'Minecraft', Arial, sans-serif;
             text-align: center;
@@ -23,7 +23,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column; /* Fügt Flex-Richtung vertikal hinzu */
+            flex-direction: column; 
         }
         .corner-button {
             position: fixed;
@@ -31,76 +31,76 @@
             left: 10px;
             background: none;
             border: none;
-            color: #d4aaff; /* Standardfarbe */
+            color: #d4aaff; 
             text-decoration: underline;
-            font-size: 14px; /* Kleinere Schriftgröße */
+            font-size: 14px; 
             cursor: pointer;
             font-family: 'Minecraft', Arial, sans-serif;
-            padding: 8px 12px; /* Etwas weniger Polsterung */
+            padding: 8px 12px; 
             z-index: 1000;
         }
         .corner-button:hover {
-            color: #b89ef5; /* Farbe beim Hover */
+            color: #b89ef5; 
         }
         .corner-button.active {
-            color: #cc0000; /* Rot, wenn aktiv */
+            color: #cc0000; 
         }
         .queue-text {
-            color: yellow; /* Gelbe Schriftfarbe */
-            font-size: 48px; /* Große Schriftgröße */
+            color: yellow; 
+            font-size: 48px; 
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* Zentriert den Text */
+            transform: translate(-50%, -50%); 
             z-index: 1000;
         }
         .queue-info {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background-color: rgba(0, 0, 0, 0.8); /* Weniger durchsichtiger Hintergrund */
-            color: white; /* Weißer Text */
-            font-size: 18px; /* Schriftgröße */
+            background-color: rgba(0, 0, 0, 0.8); 
+            color: white; 
+            font-size: 18px; 
             padding: 20px;
-            border: 2px solid black; /* Schwarzer Rand */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Schatten für besseren Kontrast */
-            z-index: 1000; /* Stellt sicher, dass die Box oben liegt */
-            text-align: left; /* Text linksbündig ausrichten */
-            width: 400px; /* Längere Textbox */
-            height: auto; /* Automatische Höhe für mehrzeiligen Text */
+            border: 2px solid black; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); 
+            z-index: 1000; 
+            text-align: left; 
+            width: 400px; 
+            height: auto; 
         }
         .queue-info .title {
-            color: yellow; /* Gelbe Schriftfarbe für den Titel */
-            font-size: 22px; /* Etwas größere Schriftgröße für den Titel */
-            margin-bottom: 10px; /* Abstand zum folgenden Text */
+            color: yellow; 
+            font-size: 22px; 
+            margin-bottom: 10px; 
         }
         .queue-info .content {
-            font-size: 18px; /* Schriftgröße für den Inhalt */
+            font-size: 18px;
         }
         .queue-info a {
-            color: lightblue; /* Linkfarbe */
-            text-decoration: underline; /* Unterstrichene Links */
+            color: lightblue;
+            text-decoration: underline; 
         }
     </style>
 </head>
 <body>
-    <!-- Der große Text in der Mitte -->
+
     <div id="queue-text" class="queue-text">Position in queue: 1</div>
 
-    <!-- Text für die Warteschlangenposition -->
+
     <div class="queue-info">
         <div class="title" id="queue-info-title">Position in queue: 1</div>
         <div class="content">
-            You can purchase priority queue status to join the server faster. Visit <a href="https://example.com" target="_blank">this link</a> for more info.
+            You can purchase priority queue status to join the server faster. Visit <a href="https://realfed45.github.io/My-website" target="_blank">this link</a> for more info.
         </div>
     </div>
 
-    <!-- Der Button oben links, der zur index.html führt -->
+
     <button id="corner-button" class="corner-button" onclick="handleButtonClick()">fuck go back</button>
 
     <script>
         function getQueueNumber() {
-            // Zufallszahl zwischen 1 und 34
+
             return Math.floor(Math.random() * 34) + 1;
         }
 
@@ -115,10 +115,10 @@
             button.classList.add('active');
             setTimeout(function() {
                 window.location.href = 'index.html';
-            }, 100); // Zeit in Millisekunden, wie lange der Button rot bleiben soll
+            }, 100); 
             setTimeout(function() {
                 button.classList.remove('active');
-            }, 100); // Button wieder in die Standardfarbe zurücksetzen
+            }, 100); 
         }
 
         // Initialisieren beim Laden der Seite
